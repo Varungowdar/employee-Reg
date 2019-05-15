@@ -1,0 +1,13 @@
+.regentry {
+    width: 50%;
+    border: 1px solid #eeeeee;
+    padding: 30px;
+}
+.regentry h4{
+    margin-bottom: 30px;
+}
+@media screen and (max-width: 768px){
+    .regentry {
+        width: 100%;
+    }
+}

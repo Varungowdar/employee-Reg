@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="reglist">
+    <div class="heading">
+      <h4>Employee List</h4>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Gender</th>
+          <th>DOB</th>
+          <th>Department</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registration of registrations; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ registration.firstName }}</td>
+          <td>{{ registration.lastName }}</td>
+          <td>{{ registration.gender }}</td>
+          <td>{{ registration.dob.day + '/' + registration.dob.month + '/' + registration.dob.year}}</td>
+          <td>{{ registration.department }}</td>          
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary" (click)="onNew()">Add New</button>
+    </div>
+  </div>
+  <br>
+  <div class="regentry" *ngIf="showNew">
+      <h4>Employee Registration</h4>
+    <form (ngSubmit)="onSave()">
+      <div class="form-group row">
+        <label for="firstname-input" class="col-3 col-form-label">First Name</label>
+        <div class="col-7">
+          <input class="form-control" type="text" [(ngModel)]="regModel.firstName" name="firstName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lastname-input" class="col-3 col-form-label">Last Name</label>
+        <div class="col-7">
+          <input class="form-control" type="text" [(ngModel)]="regModel.lastName" name="lastName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="example-gender-input" class="col-3 col-form-label">Gender</label>
+        <div class="col-7">
+          <input class="form-control" type="text" [(ngModel)]="regModel.gender" name="gender">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="dob-input" class="col-3 col-form-label">DOB</label>
+        <div class="col-5 input-group">
+          <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="dob" [(ngModel)]="regModel.dob" ngbDatepicker #dob="ngbDatepicker">
+          <button class="input-group-addon" (click)="dob.toggle()" type="button">
+            <img src="assets/img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+          </button>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="city-input" class="col-3 col-form-label">Department</label>
+        <div class="col-7 dropdown" ngbDropdown myDrop="ngbDropdown">
+          <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="department" ngbDropdownToggle>{{regModel.department}}</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            <button type="button" class="dropdown-item" *ngFor="let department of departments" (click)="onChangeDepartment(department)">{{department}}</button>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">{{submitType}}</button>
+      <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+</div>

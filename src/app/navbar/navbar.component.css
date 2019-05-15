@@ -1,0 +1,8 @@
+.navbar.bg-dark {
+    background-color: #03746b !important;
+}
+@media screen and (max-width: 768px){
+    .collapse:not(.show) {
+        display: block;
+    }
+}
