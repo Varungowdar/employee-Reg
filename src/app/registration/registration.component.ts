@@ -32,11 +32,18 @@ export class RegistrationComponent implements OnInit {
   constructor() {
     // Add default registration data.
     this.registrations.push(new Registration('Johan', 'Peter', 'Male', {year: 1980, month: 5, day: 12}, 'Consultant'));
-    this.registrations.push(new Registration('Mohamed', 'Tariq', 'Male', {year: 1975, month: 12, day: 3}, 'Manager'));
+    this.registrations.push(new Registration('Ohamed', 'Tariq', 'Male', {year: 1975, month: 12, day: 3}, 'Manager'));
     this.registrations.push(new Registration('Nirmala', 'Kumari', 'Female', {year: 1970, month: 7, day: 25}, 'Consultant'));
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.registrations = this.registrations.sort( ( a, b ) =>  {
+      if(a.firstName < b.firstName) { return -1; }
+      if(a.firstName > b.firstName) { return 1; }
+      return 0;
+      }    
+    );
+  }
 
   // This method associate to New Button.
   onNew() {
