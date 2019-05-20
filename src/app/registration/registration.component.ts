@@ -64,7 +64,25 @@ export class RegistrationComponent implements OnInit {
     // Hide registration entry section.
     this.showNew = false;
   }
+  // This method associate to Edit Button.
+    onEdit(index: number) {
+      // Assign selected table row index.
+      this.selectedRow = index;
+      // Initiate new registration.
+      this.regModel = new Registration();
+      // Retrieve selected registration from list and assign to model.
+      this.regModel = Object.assign({}, this.registrations[this.selectedRow]);
+      // Change submitType to Update.
+      this.submitType = 'Update';
+      // Display registration entry section.
+      this.showNew = true;
+    }
 
+    // This method associate to Delete Button.
+    onDelete(index: number) {
+      // Delete the corresponding registration entry from the list.
+      this.registrations.splice(index, 1);
+    }
   onCancel() {
     // Hide registration entry section.
     this.showNew = false;
